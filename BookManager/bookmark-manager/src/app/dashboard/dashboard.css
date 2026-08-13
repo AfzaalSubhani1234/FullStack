@@ -1,0 +1,35 @@
+.dashboard-container {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f4f4f4;
+}
+
+.dashboard-card {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard-card h1 {
+    margin-bottom: 15px;
+}
+
+.dashboard-card p {
+    margin-bottom: 20px;
+}
+
+.dashboard-card button {
+    padding: 10px 15px;
+    border: none;
+    background: red;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.dashboard-card button:hover {
+    background: darkred;
+}

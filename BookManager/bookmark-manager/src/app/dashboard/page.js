@@ -7,6 +7,7 @@ import {
     getFolders,
     createFolder,
 } from "@/services/folderService";
+import styles from "./dashboard.module.css";
 
 export default function Dashboard() {
     const [user, setUser] = useState(null);

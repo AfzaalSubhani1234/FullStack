@@ -23,15 +23,15 @@ import {
     getReceiptUrl,
 } from "@/services/storageService";
 
+import styles from "./dashboard.module.css";
+
 export default function DashboardPage() {
     const router = useRouter();
 
     const [user, setUser] = useState(null);
     const [expenses, setExpenses] = useState([]);
-    const [receiptUrl, setReceiptUrl] =
-        useState(null);
-    const [loading, setLoading] =
-        useState(true);
+    const [receiptUrl, setReceiptUrl] = useState(null);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         initialize();
@@ -60,16 +60,20 @@ export default function DashboardPage() {
     }
 
     async function loadExpenses(userId) {
-        const today = new Date();
+        try {
+            const today = new Date();
 
-        const data =
-            await getExpensesByMonth(
-                userId,
-                today.getFullYear(),
-                today.getMonth() + 1
-            );
+            const data =
+                await getExpensesByMonth(
+                    userId,
+                    today.getFullYear(),
+                    today.getMonth() + 1
+                );
 
-        setExpenses(data || []);
+            setExpenses(data || []);
+        } catch (error) {
+            console.error(error);
+        }
     }
 
     async function handleAddExpense(
@@ -158,63 +162,102 @@ export default function DashboardPage() {
     }
 
     if (loading) {
-        return <h2>Loading...</h2>;
+        return (
+            <div className={styles.loading}>
+                <h2 className={styles.loadingText}>
+                    Loading...
+                </h2>
+            </div>
+        );
     }
 
     return (
-        <div style={{ padding: "20px" }}>
-            <h1>
-                Expense Tracker
-            </h1>
+        <div className={styles.container}>
+            <div className={styles.dashboard}>
+                <div className={styles.header}>
+                    <div>
+                        <h1 className={styles.title}>
+                            Expense Tracker
+                        </h1>
 
-            <p>
-                Welcome{" "}
-                <strong>
-                    {user?.email}
-                </strong>
-            </p>
+                        <p className={styles.welcome}>
+                            Welcome{" "}
+                            <span
+                                className={styles.email}
+                            >
+                                {user?.email}
+                            </span>
+                        </p>
+                    </div>
 
-            <button
-                onClick={handleLogout}
-            >
-                Logout
-            </button>
+                    <button
+                        className={
+                            styles.logoutButton
+                        }
+                        onClick={handleLogout}
+                    >
+                        Logout
+                    </button>
+                </div>
 
-            <hr />
+                <div className={styles.section}>
+                    <h2
+                        className={
+                            styles.sectionTitle
+                        }
+                    >
+                        Add Expense
+                    </h2>
 
-            <ExpenseForm
-                onSubmit={
-                    handleAddExpense
-                }
-            />
-
-            <hr />
-
-            <ExpenseList
-                expenses={expenses}
-                onDelete={
-                    handleDeleteExpense
-                }
-                onViewReceipt={
-                    handleViewReceipt
-                }
-            />
-
-            {receiptUrl && (
-                <div
-                    style={{
-                        marginTop: "20px",
-                    }}
-                >
-                    <h2>Receipt</h2>
-
-                    <img
-                        src={receiptUrl}
-                        alt="Receipt"
-                        width="400"
+                    <ExpenseForm
+                        onSubmit={
+                            handleAddExpense
+                        }
                     />
                 </div>
-            )}
+
+                <div className={styles.section}>
+                    <h2
+                        className={
+                            styles.sectionTitle
+                        }
+                    >
+                        Monthly Expenses
+                    </h2>
+
+                    <ExpenseList
+                        expenses={expenses}
+                        onDelete={
+                            handleDeleteExpense
+                        }
+                        onViewReceipt={
+                            handleViewReceipt
+                        }
+                    />
+                </div>
+
+                {receiptUrl && (
+                    <div
+                        className={styles.receipt}
+                    >
+                        <h2
+                            className={
+                                styles.receiptTitle
+                            }
+                        >
+                            Receipt Preview
+                        </h2>
+
+                        <img
+                            src={receiptUrl}
+                            alt="Receipt"
+                            className={
+                                styles.receiptImage
+                            }
+                        />
+                    </div>
+                )}
+            </div>
         </div>
     );
 }

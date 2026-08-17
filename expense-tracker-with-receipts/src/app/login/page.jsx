@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { login } from "@/services/authService";
+import styles from "./login.module.css";
 
 export default function LoginPage() {
     const router = useRouter();
@@ -32,47 +33,69 @@ export default function LoginPage() {
     };
 
     return (
-        <div style={{ padding: "30px" }}>
-            <h1>Login</h1>
+        <div className={styles.container}>
+            <div className={styles.card}>
+                <h1 className={styles.title}>Welcome Back</h1>
 
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <input
-                        type="email"
-                        placeholder="Email"
-                        value={email}
-                        onChange={(e) =>
-                            setEmail(e.target.value)
-                        }
-                    />
-                </div>
+                <p className={styles.subtitle}>
+                    Login to your Expense Tracker
+                </p>
 
-                <br />
-
-                <div>
-                    <input
-                        type="password"
-                        placeholder="Password"
-                        value={password}
-                        onChange={(e) =>
-                            setPassword(e.target.value)
-                        }
-                    />
-                </div>
-
-                <br />
-
-                <button
-                    type="submit"
-                    disabled={loading}
+                <form
+                    className={styles.form}
+                    onSubmit={handleSubmit}
                 >
-                    {loading ? "Logging in..." : "Login"}
-                </button>
+                    <div className={styles.field}>
+                        <label className={styles.label}>
+                            Email
+                        </label>
 
-                {error && (
-                    <p>{error}</p>
-                )}
-            </form>
+                        <input
+                            className={styles.input}
+                            type="email"
+                            placeholder="Enter your email"
+                            value={email}
+                            onChange={(e) =>
+                                setEmail(e.target.value)
+                            }
+                            required
+                        />
+                    </div>
+
+                    <div className={styles.field}>
+                        <label className={styles.label}>
+                            Password
+                        </label>
+
+                        <input
+                            className={styles.input}
+                            type="password"
+                            placeholder="Enter your password"
+                            value={password}
+                            onChange={(e) =>
+                                setPassword(e.target.value)
+                            }
+                            required
+                        />
+                    </div>
+
+                    {error && (
+                        <p className={styles.error}>
+                            {error}
+                        </p>
+                    )}
+
+                    <button
+                        className={styles.button}
+                        type="submit"
+                        disabled={loading}
+                    >
+                        {loading
+                            ? "Logging in..."
+                            : "Login"}
+                    </button>
+                </form>
+            </div>
         </div>
     );
 }

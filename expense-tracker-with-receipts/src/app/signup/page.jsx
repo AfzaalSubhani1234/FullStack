@@ -1,7 +1,9 @@
 "use client";
+
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { signup } from "@/services/authService";
+import styles from "./signup.module.css";
 
 export default function SignupPage() {
     const router = useRouter();
@@ -9,12 +11,13 @@ export default function SignupPage() {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [confirmPassword, setConfirmPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] =
+        useState("");
 
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
 
-    const handleSubmit = async (e) => {
+    async function handleSubmit(e) {
         e.preventDefault();
 
         setError("");
@@ -29,84 +32,110 @@ export default function SignupPage() {
                 confirmPassword
             );
 
-            alert("Account created successfully!");
+            alert(
+                "Account created successfully!"
+            );
 
             router.push("/login");
         } catch (err) {
-            setError(err.message);
+            setError(
+                err.message ||
+                "Something went wrong"
+            );
         } finally {
             setLoading(false);
         }
-    };
+    }
 
     return (
-        <div style={{ padding: "30px" }}>
-            <h1>Signup</h1>
+        <div className={styles.container}>
+            <div className={styles.card}>
+                <h1 className={styles.title}>
+                    Create Account
+                </h1>
 
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <input
-                        type="text"
-                        placeholder="Name"
-                        value={name}
-                        onChange={(e) =>
-                            setName(e.target.value)
-                        }
-                    />
-                </div>
+                <form onSubmit={handleSubmit}>
+                    <div className={styles.group}>
+                        <input
+                            className={styles.input}
+                            type="text"
+                            placeholder="Full Name"
+                            value={name}
+                            onChange={(e) =>
+                                setName(e.target.value)
+                            }
+                            required
+                        />
+                    </div>
 
-                <br />
+                    <div className={styles.group}>
+                        <input
+                            className={styles.input}
+                            type="email"
+                            placeholder="Email Address"
+                            value={email}
+                            onChange={(e) =>
+                                setEmail(e.target.value)
+                            }
+                            required
+                        />
+                    </div>
 
-                <div>
-                    <input
-                        type="email"
-                        placeholder="Email"
-                        value={email}
-                        onChange={(e) =>
-                            setEmail(e.target.value)
-                        }
-                    />
-                </div>
+                    <div className={styles.group}>
+                        <input
+                            className={styles.input}
+                            type="password"
+                            placeholder="Password"
+                            value={password}
+                            onChange={(e) =>
+                                setPassword(e.target.value)
+                            }
+                            required
+                        />
+                    </div>
 
-                <br />
+                    <div className={styles.group}>
+                        <input
+                            className={styles.input}
+                            type="password"
+                            placeholder="Confirm Password"
+                            value={confirmPassword}
+                            onChange={(e) =>
+                                setConfirmPassword(
+                                    e.target.value
+                                )
+                            }
+                            required
+                        />
+                    </div>
 
-                <div>
-                    <input
-                        type="password"
-                        placeholder="Password"
-                        value={password}
-                        onChange={(e) =>
-                            setPassword(e.target.value)
-                        }
-                    />
-                </div>
+                    <button
+                        className={styles.button}
+                        type="submit"
+                        disabled={loading}
+                    >
+                        {loading
+                            ? "Creating Account..."
+                            : "Signup"}
+                    </button>
 
-                <br />
+                    {error && (
+                        <p className={styles.error}>
+                            {error}
+                        </p>
+                    )}
+                </form>
 
-                <div>
-                    <input
-                        type="password"
-                        placeholder="Confirm Password"
-                        value={confirmPassword}
-                        onChange={(e) =>
-                            setConfirmPassword(e.target.value)
-                        }
-                    />
-                </div>
-
-                <br />
-
-                <button
-                    type="submit"
-                    disabled={loading}
-                >
-                    {loading ? "Creating..." : "Signup"}
-                </button>
-
-                {error && (
-                    <p>{error}</p>
-                )}
-            </form>
+                <p className={styles.footer}>
+                    Already have an account?{" "}
+                    <span
+                        onClick={() => router.push("/login")}
+                        className={styles.link}
+                    >
+                        Login
+                    </span>
+                </p>
+            </div>
         </div>
     );
 }

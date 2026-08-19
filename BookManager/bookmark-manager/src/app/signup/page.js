@@ -1,9 +1,14 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { supabase } from "../../lib/supabase";
+import styles from "./signup.module.css";
 
 export default function Signup() {
+    const router = useRouter();
+
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -20,6 +25,7 @@ export default function Signup() {
         }
 
         setLoading(true);
+        setMessage("");
 
         const { error } = await supabase.auth.signUp({
             email,
@@ -28,51 +34,92 @@ export default function Signup() {
 
         if (error) {
             setMessage(error.message);
-        } else {
-            setMessage("Account created successfully.");
+            setLoading(false);
+            return;
         }
+
+        setMessage("Account created successfully.");
+
+        router.push("/dashboard");
 
         setLoading(false);
     }
 
     return (
-        <main>
-            <div>
-                <form onSubmit={handleSubmit}>
+        <main className={styles.container}>
+            <div className={styles.card}>
+                <h1 className={styles.title}>Sign Up</h1>
+
+                <form
+                    onSubmit={handleSubmit}
+                    className={styles.form}
+                >
                     <input
+                        className={styles.input}
                         type="text"
                         placeholder="Username"
                         value={username}
-                        onChange={(e) => setUsername(e.target.value)}
+                        onChange={(e) =>
+                            setUsername(e.target.value)
+                        }
                     />
 
                     <input
+                        className={styles.input}
                         type="email"
                         placeholder="Email"
                         value={email}
-                        onChange={(e) => setEmail(e.target.value)}
+                        onChange={(e) =>
+                            setEmail(e.target.value)
+                        }
+                        required
                     />
 
                     <input
+                        className={styles.input}
                         type="password"
                         placeholder="Enter your password"
                         value={password}
-                        onChange={(e) => setPassword(e.target.value)}
+                        onChange={(e) =>
+                            setPassword(e.target.value)
+                        }
+                        required
                     />
 
                     <input
+                        className={styles.input}
                         type="password"
                         placeholder="Confirm your password"
                         value={confirmPassword}
-                        onChange={(e) => setConfirmPassword(e.target.value)}
+                        onChange={(e) =>
+                            setConfirmPassword(
+                                e.target.value
+                            )
+                        }
+                        required
                     />
 
-                    <button type="submit" disabled={loading}>
+                    <button
+                        className={styles.button}
+                        type="submit"
+                        disabled={loading}
+                    >
                         {loading ? "Loading..." : "Sign Up"}
                     </button>
 
-                    {message && <p>{message}</p>}
+                    {message && (
+                        <p className={styles.message}>
+                            {message}
+                        </p>
+                    )}
                 </form>
+
+                <p className={styles.link}>
+                    Already have an account?{" "}
+                    <Link href="/login">
+                        Login
+                    </Link>
+                </p>
             </div>
         </main>
     );

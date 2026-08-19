@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { supabase } from "../../lib/supabase";
+import styles from "./login.module.css";
 
 export default function Login() {
   const router = useRouter();
@@ -36,12 +37,13 @@ export default function Login() {
   }
 
   return (
-    <main>
-      <div>
-        <h1>Login</h1>
+    <main className={styles.container}>
+      <div className={styles.card}>
+        <h1 className={styles.title}>Login</h1>
 
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className={styles.form}>
           <input
+            className={styles.input}
             type="email"
             placeholder="Enter your email"
             value={email}
@@ -50,6 +52,7 @@ export default function Login() {
           />
 
           <input
+            className={styles.input}
             type="password"
             placeholder="Enter your password"
             value={password}
@@ -57,15 +60,22 @@ export default function Login() {
             required
           />
 
-          <button type="submit" disabled={loading}>
+          <button
+            className={styles.button}
+            type="submit"
+            disabled={loading}
+          >
             {loading ? "Loading..." : "Login"}
           </button>
         </form>
 
-        {message && <p>{message}</p>}
+        {message && (
+          <p className={styles.message}>{message}</p>
+        )}
 
-        <p>
-          Don't have an account? <Link href="/signup">Sign Up</Link>
+        <p className={styles.link}>
+          Don't have an account?{" "}
+          <Link href="/signup">Sign Up</Link>
         </p>
       </div>
     </main>

@@ -1,0 +1,123 @@
+.container {
+    min-height: 100vh;
+    background: #000;
+    color: #fff;
+    padding: 32px;
+}
+
+.wrapper {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 32px;
+}
+
+.title {
+    margin: 0;
+    font-size: 36px;
+    font-weight: 700;
+    color: #fff;
+}
+
+.email {
+    margin-top: 10px;
+    color: #fff;
+}
+
+.logoutButton {
+    padding: 12px 24px;
+    background: blue;
+    color: white;
+    border: 2px solid #fff;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.logoutButton:hover {
+    color: #fff;
+    background-color: red;
+}
+
+.section {
+    margin-top: 32px;
+    padding: 24px;
+    background: #111;
+    border: 2px solid #fff;
+    border-radius: 16px;
+}
+
+.sectionTitle {
+    margin: 0;
+    font-size: 28px;
+    font-weight: 700;
+    color: #fff;
+}
+
+.message {
+    margin-top: 16px;
+    color: #fff;
+}
+
+.error {
+    margin-top: 16px;
+    padding: 12px;
+    color: #fff;
+    border: 2px solid #fff;
+    border-radius: 12px;
+}
+
+.pollList {
+    margin-top: 20px;
+}
+
+.pollCard {
+    margin-bottom: 20px;
+    padding: 20px;
+    background: #000;
+    border: 2px solid #fff;
+    border-radius: 16px;
+}
+
+.question {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 700;
+    color: #fff;
+}
+
+.date {
+    margin-top: 10px;
+    color: #fff;
+    font-size: 14px;
+}
+
+.actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.viewButton,
+.copyButton {
+    padding: 12px 20px;
+    background: #000;
+    color: #fff;
+    border: 2px solid #fff;
+    border-radius: 12px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.viewButton:hover,
+.copyButton:hover {
+    background: #fff;
+    color: #000;
+}

@@ -1,32 +1,61 @@
 import Link from "next/link";
+import styles from "./page.module.css";
 
 export default function HomePage() {
   return (
-    <main className="min-h-screen">
-      <section className="flex min-h-screen flex-col items-center justify-center px-6 text-center">
-        <h1 className="text-5xl font-bold">
-          Live Poll
-        </h1>
+    <main className={styles.container}>
+      <section className={styles.hero}>
+        <div className={styles.card}>
+          <div className={styles.logo}>
+            <span>●</span> Live Poll
+          </div>
 
-        <p className="mt-4 max-w-xl text-lg text-gray-600">
-          Create polls, share them with anyone, and
-          see the results update live.
-        </p>
+          <h1 className={styles.title}>
+            Ask. Vote.
+            <br />
+            <span>See Results Live.</span>
+          </h1>
 
-        <div className="mt-8 flex gap-4">
-          <Link
-            href="/signup"
-            className="rounded bg-black px-6 py-3 text-white"
-          >
-            Get Started
-          </Link>
+          <p className={styles.description}>
+            Create polls, share them with anyone, and watch the results
+            update in real time.
+          </p>
 
-          <Link
-            href="/login"
-            className="rounded border px-6 py-3"
-          >
-            Login
-          </Link>
+          <div className={styles.actions}>
+            <Link href="/signup" className={styles.primaryButton}>
+              Get Started
+            </Link>
+
+            <Link href="/login" className={styles.secondaryButton}>
+              Login
+            </Link>
+          </div>
+
+          <div className={styles.features}>
+            <div className={styles.feature}>
+              <div className={styles.icon}>+</div>
+              <div>
+                <h3>Create</h3>
+                <p>Build a poll in seconds</p>
+              </div>
+            </div>
+
+            <div className={styles.feature}>
+              <div className={styles.icon}>↗</div>
+              <div>
+                <h3>Share</h3>
+                <p>Send it to anyone</p>
+              </div>
+            </div>
+
+            <div className={styles.feature}>
+              <div className={styles.icon}>◉</div>
+              <div>
+                <h3>Live Results</h3>
+                <p>Watch votes update instantly</p>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
     </main>

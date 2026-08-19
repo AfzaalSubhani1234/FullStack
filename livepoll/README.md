@@ -1,36 +1,43 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+LivePoll
 
-## Getting Started
+LivePoll is a simple and modern polling application where users can create polls, share them with others, and collect votes.
 
-First, run the development server:
+Features
+User signup and login
+Create polls
+Add multiple poll options
+Remove poll options
+View created polls
+Share polls using a unique link
+Copy poll links
+Public voting pages
+Responsive dark-mode interface
+Secure authentication with Supabase
+PostgreSQL database with Supabase
+Tech Stack
+Next.js
+React
+TypeScript
+CSS Modules
+Supabase
+PostgreSQL
+How It Works
+Create an account or log in.
+Open the dashboard.
+Create a poll with a question and options.
+Share the generated poll link.
+Other users open the link and vote.
+Poll data is stored in Supabase.
+Poll URL
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Each poll has its own unique URL:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+/polls/[poll-id]
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Example:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+http://localhost:3000/polls/ec56a870-6b87-4552-95dd-23d29daf878f
 
-## Learn More
+Project Goal
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+LivePoll is built as a full-stack polling application to demonstrate authentication, database integration, dynamic routes, CRUD operations, and a responsive Next.js user interface

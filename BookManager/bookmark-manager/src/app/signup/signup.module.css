@@ -7,6 +7,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 20px;
 }
 
 .card {
@@ -16,6 +17,7 @@ body {
     border: 1px solid #dbe2ea;
     border-radius: 10px;
     background-color: white;
+    box-sizing: border-box;
 }
 
 .title {
@@ -31,16 +33,83 @@ body {
 }
 
 .input {
+    width: 100%;
     padding: 12px;
     font-size: 16px;
     border: 1px solid #cbd5e1;
     border-radius: 5px;
+    background-color: white;
+    color: #111827;
+
+    box-sizing: border-box;
 }
 
 .input:focus {
     outline: none;
     border-color: #3b82f6;
 }
+
+/* Password holder */
+
+.passwordBox {
+    position: relative;
+    width: 100%;
+}
+
+/* Password input */
+
+.passwordInput {
+    width: 100%;
+    height: 46px;
+    padding: 12px 46px 12px 12px;
+    font-size: 16px;
+    border: 1px solid #cbd5e1;
+    border-radius: 5px;
+    box-sizing: border-box;
+    background-color: white;
+    color: #111827;
+}
+
+.passwordInput:focus {
+    outline: none;
+    border-color: #3b82f6;
+}
+
+/* Eye holder */
+
+.eyeButton {
+    position: absolute;
+    right: 0;
+    top: 0;
+
+    width: 46px;
+    height: 46px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+    border: none;
+    background: transparent;
+
+    color: #64748b;
+    cursor: pointer;
+}
+
+.eyeButton:hover {
+    color: #111827;
+}
+
+/* Standard eye icon */
+
+.eyeIcon {
+    width: 21px;
+    height: 21px;
+    display: block;
+}
+
+/* Signup button */
 
 .button {
     padding: 12px;
@@ -61,10 +130,15 @@ body {
     opacity: 0.7;
 }
 
+/* Message */
+
 .message {
     text-align: center;
     color: #111827;
+    line-height: 1.5;
 }
+
+/* Login link */
 
 .link {
     margin-top: 20px;
